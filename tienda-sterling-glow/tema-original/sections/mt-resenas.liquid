@@ -1,0 +1,74 @@
+{{ 'mt-styles.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.fondo }};
+  }
+{% endstyle %}
+
+<section class="mt-resenas mt-section mt-resenas-wrap" data-mt-resenas>
+  <div class="mt-container">
+    <div class="mt-beneficios-cabecera mt-reveal">
+      {%- if section.settings.eyebrow != blank -%}<p class="mt-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 class="mt-h2">{{ section.settings.titulo }}</h2>
+    </div>
+    <div class="mt-resenas-pista mt-reveal">
+      {%- for block in section.blocks -%}
+        <div class="mt-resena" {{ block.shopify_attributes }}>
+          <div class="mt-resena-estrellas">
+            {%- for i in (1..5) -%}{% if i <= block.settings.estrellas %}★{% else %}☆{% endif %}{%- endfor -%}
+          </div>
+          <p class="mt-body mt-resena-texto">"{{ block.settings.texto }}"</p>
+          <p class="mt-resena-autor">{{ block.settings.autor }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+    <div class="mt-resenas-nav">
+      <button type="button" class="mt-resenas-flecha" data-mt-resenas-prev aria-label="Previous">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M15 18l-6-6 6-6"/></svg>
+      </button>
+      <button type="button" class="mt-resenas-flecha" data-mt-resenas-next aria-label="Next">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M9 18l6-6-6-6"/></svg>
+      </button>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MT – Reviews",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small text", "default": "Reviews" },
+    { "type": "text", "id": "titulo", "label": "Heading", "default": "Homes that sleep more peacefully now" },
+    { "type": "color", "id": "fondo", "label": "Background color", "default": "#F8F2E7" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top spacing (px)", "min": 0, "max": 160, "step": 8, "default": 96 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom spacing (px)", "min": 0, "max": 160, "step": 8, "default": 96 }
+  ],
+  "blocks": [
+    {
+      "type": "resena",
+      "name": "Review",
+      "settings": [
+        { "type": "range", "id": "estrellas", "label": "Stars", "min": 1, "max": 5, "step": 1, "default": 5 },
+        { "type": "textarea", "id": "texto", "label": "Text", "default": "I don't turn on the main light at night anymore. It switches on by itself with just the right brightness." },
+        { "type": "text", "id": "autor", "label": "Author", "default": "Marta G." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MT – Reviews",
+      "blocks": [
+        { "type": "resena", "settings": { "estrellas": 5, "texto": "I don't turn on the main light at night anymore. It switches on by itself with just the right brightness.", "autor": "Marta G." } },
+        { "type": "resena", "settings": { "estrellas": 5, "texto": "It installed in literally one minute. And the walnut finish looks beautiful in the hallway.", "autor": "Diego R." } },
+        { "type": "resena", "settings": { "estrellas": 4, "texto": "I bought it for my daughter's room and now she's not afraid to get up at night anymore.", "autor": "Laura P." } },
+        { "type": "resena", "settings": { "estrellas": 5, "texto": "The battery lasts weeks in night mode. A perfect fit for the closet.", "autor": "Javier M." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,135 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "mt-hero": {
+      "type": "mt-hero",
+      "settings": {
+        "eyebrow": "Casa Lumen",
+        "titulo": "The light that turns on before you trip",
+        "subtitulo": "A motion-sensor wall light with no cables or installation. Stick it on, charge it, forget it — until you need it.",
+        "boton_texto": "Shop now",
+        "producto": "smart-motion-sensor-night-light-led-rechargeable-magnetic-wall-lamp-portable-for-hallway-bedroom-stairs-bathroom-cabinets-decor",
+        "boton2_texto": "How it works",
+        "boton2_enlace": "#mt-como-funciona",
+        "prueba_texto": "Trusted by 500+ homes"
+      }
+    },
+    "mt-beneficios": {
+      "type": "mt-beneficios",
+      "settings": {
+        "eyebrow": "Why Casa Lumen",
+        "titulo": "Designed for the exact moment you need it"
+      },
+      "blocks": {
+        "b1": { "type": "beneficio", "settings": { "titulo": "Turns on by itself", "texto": "The sensor detects your movement and turns on a warm light before you need it.", "icono": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"><circle cx=\"12\" cy=\"8\" r=\"3\"/><path d=\"M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6\"/></svg>" } },
+        "b2": { "type": "beneficio", "settings": { "titulo": "Zero installation", "texto": "Magnet + 3M adhesive. Installs in 10 seconds, no wires or electrician needed.", "icono": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"><path d=\"M12 3v6M8 6l4-3 4 3M6 12h12v3a6 6 0 0 1-12 0v-3z\"/></svg>" } },
+        "b3": { "type": "beneficio", "settings": { "titulo": "Charges like your phone", "texto": "Rechargeable USB-C battery. Take it off the wall and use it as a flashlight.", "icono": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"><rect x=\"7\" y=\"2\" width=\"10\" height=\"20\" rx=\"2\"/><path d=\"M11 6h2\"/></svg>" } }
+      },
+      "block_order": ["b1", "b2", "b3"]
+    },
+    "mt-como-funciona": {
+      "type": "mt-como-funciona",
+      "settings": {
+        "eyebrow": "How it works",
+        "titulo": "From the box to the wall in under a minute"
+      },
+      "blocks": {
+        "p1": { "type": "paso", "settings": { "titulo": "Detects your movement", "texto": "The infrared sensor notices you approaching and turns on the light — no touching required." } },
+        "p2": { "type": "paso", "settings": { "titulo": "Choose your light", "texto": "Press and hold the button to switch between cool white, neutral and warm light." } },
+        "p3": { "type": "paso", "settings": { "titulo": "Installs in 10 seconds", "texto": "Stick the magnetic base on with the included adhesive and snap the light into place. No tools needed." } }
+      },
+      "block_order": ["p1", "p2", "p3"]
+    },
+    "mt-ambientes": {
+      "type": "mt-ambientes",
+      "settings": {
+        "eyebrow": "In every corner",
+        "titulo": "A light for every corner of the house"
+      },
+      "blocks": {
+        "a1": { "type": "ambiente", "settings": { "eyebrow": "Hallway", "titulo": "The 3 AM problem", "texto": "Flipping on the main light wakes you up completely — and whoever's sleeping next to you. NOOK turns on before you arrive, with a soft light that won't disturb anyone." } },
+        "a2": { "type": "ambiente", "settings": { "eyebrow": "Bedroom", "titulo": "Calm by the bed", "texto": "No fumbling in the dark. A warm glow exactly where you need it, without waking anyone all the way up." } },
+        "a3": { "type": "ambiente", "settings": { "eyebrow": "Closet", "titulo": "Find what you're looking for", "texto": "In the closet, the storage room, or the basement hallway — anywhere there's no light switch within reach." } }
+      },
+      "block_order": ["a1", "a2", "a3"]
+    },
+    "mt-acabados": {
+      "type": "mt-acabados",
+      "settings": {
+        "eyebrow": "Two wood finishes",
+        "titulo": "Choose the tone that matches your home",
+        "texto": "Light ash or dark walnut: the same minimalist design, in the wood that best matches your walls.",
+        "boton_texto": "Shop NOOK Motion Light",
+        "producto": "smart-motion-sensor-night-light-led-rechargeable-magnetic-wall-lamp-portable-for-hallway-bedroom-stairs-bathroom-cabinets-decor"
+      },
+      "blocks": {
+        "ac1": { "type": "acabado", "settings": { "nombre": "Light ash", "color": "#D9B27C", "imagen_defecto": "mt-acabado-fresno.jpg" } },
+        "ac2": { "type": "acabado", "settings": { "nombre": "Dark walnut", "color": "#5B3A24", "imagen_defecto": "mt-acabado-nogal.jpg" } }
+      },
+      "block_order": ["ac1", "ac2"]
+    },
+    "mt-resenas": {
+      "type": "mt-resenas",
+      "settings": {
+        "eyebrow": "Reviews",
+        "titulo": "Homes that sleep more peacefully now"
+      },
+      "blocks": {
+        "r1": { "type": "resena", "settings": { "estrellas": 5, "texto": "I don't turn on the main light at night anymore. It switches on by itself with just the right brightness.", "autor": "Marta G." } },
+        "r2": { "type": "resena", "settings": { "estrellas": 5, "texto": "It installed in literally one minute. And the walnut finish looks beautiful in the hallway.", "autor": "Diego R." } },
+        "r3": { "type": "resena", "settings": { "estrellas": 4, "texto": "I bought it for my daughter's room and now she's not afraid to get up at night anymore.", "autor": "Laura P." } },
+        "r4": { "type": "resena", "settings": { "estrellas": 5, "texto": "The battery lasts weeks in night mode. A perfect fit for the closet.", "autor": "Javier M." } }
+      },
+      "block_order": ["r1", "r2", "r3", "r4"]
+    },
+    "mt-especificaciones": {
+      "type": "mt-especificaciones",
+      "settings": {
+        "eyebrow": "Tech specs",
+        "titulo": "Materials and details, no fine print"
+      },
+      "blocks": {
+        "s1": { "type": "spec", "settings": { "etiqueta": "Material", "valor": "Wood + ABS" } },
+        "s2": { "type": "spec", "settings": { "etiqueta": "Sensor", "valor": "Passive infrared" } },
+        "s3": { "type": "spec", "settings": { "etiqueta": "Charging", "valor": "USB-C" } },
+        "s4": { "type": "spec", "settings": { "etiqueta": "Light tones", "valor": "Cool / neutral / warm" } },
+        "s5": { "type": "spec", "settings": { "etiqueta": "Mounting", "valor": "Magnet + 3M adhesive" } },
+        "s6": { "type": "spec", "settings": { "etiqueta": "Ideal for", "valor": "Hallway, bedroom, closet" } }
+      },
+      "block_order": ["s1", "s2", "s3", "s4", "s5", "s6"]
+    },
+    "mt-faq": {
+      "type": "mt-faq",
+      "settings": {
+        "eyebrow": "Frequently asked questions",
+        "titulo": "Everything you want to know"
+      },
+      "blocks": {
+        "f1": { "type": "pregunta", "settings": { "pregunta": "How long does the battery last?", "respuesta": "It depends on the mode. In night-sensor mode, which only activates when you walk by in the dark, the battery lasts weeks. In fixed mode it drains faster." } },
+        "f2": { "type": "pregunta", "settings": { "pregunta": "Does it turn on during the day?", "respuesta": "Not in night mode — it has a light sensor that keeps it off when the room is already bright." } },
+        "f3": { "type": "pregunta", "settings": { "pregunta": "Do I need an electrician?", "respuesta": "No. It has no wires. It sticks to the wall with the included adhesive and magnetic base, and charges just like your phone." } },
+        "f4": { "type": "pregunta", "settings": { "pregunta": "Can it be used outdoors?", "respuesta": "It's designed for indoor use. A covered porch is fine, but avoid direct rain." } }
+      },
+      "block_order": ["f1", "f2", "f3", "f4"]
+    },
+    "mt-cta-final": {
+      "type": "mt-cta-final",
+      "settings": {
+        "eyebrow": "Casa Lumen",
+        "titulo": "Give your home the light it needs at 3 AM",
+        "texto": "Shipped in 24-48h with free returns for the first 30 days.",
+        "boton_texto": "Shop NOOK Motion Light",
+        "producto": "smart-motion-sensor-night-light-led-rechargeable-magnetic-wall-lamp-portable-for-hallway-bedroom-stairs-bathroom-cabinets-decor"
+      }
+    }
+  },
+  "order": ["mt-hero", "mt-beneficios", "mt-como-funciona", "mt-ambientes", "mt-acabados", "mt-resenas", "mt-especificaciones", "mt-faq", "mt-cta-final"]
+}

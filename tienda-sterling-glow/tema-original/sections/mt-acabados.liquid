@@ -1,0 +1,85 @@
+{{ 'mt-styles.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.fondo }};
+  }
+{% endstyle %}
+
+<section class="mt-acabados mt-section" data-mt-acabados>
+  <div class="mt-container">
+    <div class="mt-acabados-layout">
+      <div class="mt-acabados-visor mt-reveal">
+        {%- for block in section.blocks -%}
+          {%- if block.settings.imagen != blank -%}
+            <img src="{{ block.settings.imagen | image_url: width: 1000 }}" alt="{{ block.settings.imagen.alt | escape }}" data-acabado="{{ block.id }}" class="{% if forloop.first %}mt-activa{% endif %}" loading="lazy">
+          {%- else -%}
+            <img src="{{ block.settings.imagen_defecto | asset_url }}" alt="" data-acabado="{{ block.id }}" class="{% if forloop.first %}mt-activa{% endif %}" loading="lazy">
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+      <div class="mt-reveal">
+        {%- if section.settings.eyebrow != blank -%}<p class="mt-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+        <h2 class="mt-h2">{{ section.settings.titulo }}</h2>
+        <p class="mt-body" style="margin-top:16px;">{{ section.settings.texto }}</p>
+        <div class="mt-swatches">
+          {%- for block in section.blocks -%}
+            <button type="button" class="mt-swatch{% if forloop.first %} mt-activo{% endif %}" data-acabado="{{ block.id }}">
+              <span class="mt-swatch-color" style="background:{{ block.settings.color }};"></span>
+              {{ block.settings.nombre }}
+            </button>
+          {%- endfor -%}
+        </div>
+        {%- if section.settings.boton_texto != blank -%}
+          {%- assign enlace_acabados = section.settings.boton_enlace -%}
+          {%- if section.settings.producto != blank -%}{%- assign enlace_acabados = section.settings.producto.url -%}{%- endif -%}
+          <div style="margin-top:32px;">
+            <a href="{{ enlace_acabados | default: '#' }}" class="mt-btn mt-btn-primario">{{ section.settings.boton_texto }}</a>
+          </div>
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MT – Finishes",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small text", "default": "Two wood finishes" },
+    { "type": "text", "id": "titulo", "label": "Heading", "default": "Choose the tone that matches your home" },
+    { "type": "textarea", "id": "texto", "label": "Text", "default": "Light ash or dark walnut: the same minimalist design, in the wood that best matches your walls." },
+    { "type": "text", "id": "boton_texto", "label": "Button text", "default": "See both finishes" },
+    { "type": "url", "id": "boton_enlace", "label": "Button link (if no product selected)" },
+    { "type": "product", "id": "producto", "label": "Product the button links to" },
+    { "type": "color", "id": "fondo", "label": "Background color", "default": "#EFE3D0" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top spacing (px)", "min": 0, "max": 160, "step": 8, "default": 96 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom spacing (px)", "min": 0, "max": 160, "step": 8, "default": 96 }
+  ],
+  "blocks": [
+    {
+      "type": "acabado",
+      "name": "Finish",
+      "settings": [
+        { "type": "image_picker", "id": "imagen", "label": "Finish photo" },
+        { "type": "text", "id": "imagen_defecto", "label": "Fallback file name (do not edit)", "default": "mt-acabado-fresno.jpg" },
+        { "type": "text", "id": "nombre", "label": "Name", "default": "Light ash" },
+        { "type": "color", "id": "color", "label": "Dot color", "default": "#D9B27C" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MT – Finishes",
+      "blocks": [
+        { "type": "acabado", "settings": { "nombre": "Light ash", "color": "#D9B27C", "imagen_defecto": "mt-acabado-fresno.jpg" } },
+        { "type": "acabado", "settings": { "nombre": "Dark walnut", "color": "#5B3A24", "imagen_defecto": "mt-acabado-nogal.jpg" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,78 @@
+{{ 'mt-styles.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.fondo }};
+  }
+{% endstyle %}
+
+<section class="mt-ambientes mt-section">
+  <div class="mt-container">
+    {%- if section.settings.titulo != blank -%}
+      <div class="mt-beneficios-cabecera mt-reveal">
+        {%- if section.settings.eyebrow != blank -%}<p class="mt-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+        <h2 class="mt-h2">{{ section.settings.titulo }}</h2>
+      </div>
+    {%- endif -%}
+    {%- for block in section.blocks -%}
+      {%- assign es_impar = forloop.index0 | modulo: 2 -%}
+      <div class="mt-ambiente mt-reveal{% if es_impar == 1 %} mt-ambiente-invertido{% endif %}" {{ block.shopify_attributes }}>
+        <div class="mt-ambiente-media">
+          {%- if block.settings.imagen != blank -%}
+            <img src="{{ block.settings.imagen | image_url: width: 1200 }}" alt="{{ block.settings.imagen.alt | escape }}" loading="lazy">
+          {%- elsif forloop.index == 1 -%}
+            <img src="{{ 'mt-ambiente-1.jpg' | asset_url }}" alt="" loading="lazy">
+          {%- elsif forloop.index == 2 -%}
+            <img src="{{ 'mt-ambiente-2.jpg' | asset_url }}" alt="" loading="lazy">
+          {%- else -%}
+            <img src="{{ 'mt-ambiente-3.jpg' | asset_url }}" alt="" loading="lazy">
+          {%- endif -%}
+        </div>
+        <div class="mt-ambiente-texto">
+          <p class="mt-eyebrow">{{ block.settings.eyebrow }}</p>
+          <h3 class="mt-h3 mt-ambiente-titulo">{{ block.settings.titulo }}</h3>
+          <p class="mt-body">{{ block.settings.texto }}</p>
+        </div>
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MT – Rooms",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small text", "default": "In every corner" },
+    { "type": "text", "id": "titulo", "label": "Section heading", "default": "A light for every corner of the house" },
+    { "type": "color", "id": "fondo", "label": "Background color", "default": "#F8F2E7" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top spacing (px)", "min": 0, "max": 160, "step": 8, "default": 96 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom spacing (px)", "min": 0, "max": 160, "step": 8, "default": 96 }
+  ],
+  "blocks": [
+    {
+      "type": "ambiente",
+      "name": "Room",
+      "settings": [
+        { "type": "image_picker", "id": "imagen", "label": "Photo" },
+        { "type": "text", "id": "eyebrow", "label": "Small text", "default": "Hallway" },
+        { "type": "text", "id": "titulo", "label": "Heading", "default": "The 3 AM problem" },
+        { "type": "textarea", "id": "texto", "label": "Text", "default": "Flipping on the main light wakes you up completely. NOOK turns on before you arrive, with a soft light that won't disturb anyone." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MT – Rooms",
+      "blocks": [
+        { "type": "ambiente", "settings": { "eyebrow": "Hallway", "titulo": "The 3 AM problem", "texto": "Flipping on the main light wakes you up completely — and whoever's sleeping next to you. NOOK turns on before you arrive, with a soft light that won't disturb anyone." } },
+        { "type": "ambiente", "settings": { "eyebrow": "Bedroom", "titulo": "Calm by the bed", "texto": "No fumbling in the dark. A warm glow exactly where you need it, without waking anyone all the way up." } },
+        { "type": "ambiente", "settings": { "eyebrow": "Closet", "titulo": "Find what you're looking for", "texto": "In the closet, the storage room, or the basement hallway — anywhere there's no light switch within reach." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

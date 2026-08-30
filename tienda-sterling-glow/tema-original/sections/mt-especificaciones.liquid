@@ -1,0 +1,74 @@
+{{ 'mt-styles.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.fondo }};
+  }
+{% endstyle %}
+
+<section class="mt-especificaciones mt-section">
+  <div class="mt-container">
+    <div class="mt-specs-layout">
+      <div class="mt-reveal">
+        {%- if section.settings.eyebrow != blank -%}<p class="mt-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+        <h2 class="mt-h2" style="margin-bottom:32px;">{{ section.settings.titulo }}</h2>
+        <div class="mt-specs-grid">
+          {%- for block in section.blocks -%}
+            <div class="mt-spec" {{ block.shopify_attributes }}>
+              <p class="mt-spec-label">{{ block.settings.etiqueta }}</p>
+              <p class="mt-spec-valor">{{ block.settings.valor }}</p>
+            </div>
+          {%- endfor -%}
+        </div>
+      </div>
+      <div class="mt-specs-media mt-reveal">
+        {%- if section.settings.imagen != blank -%}
+          <img src="{{ section.settings.imagen | image_url: width: 1200 }}" alt="{{ section.settings.imagen.alt | escape }}" loading="lazy">
+        {%- else -%}
+          <img src="{{ 'mt-acabado-nogal.jpg' | asset_url }}" alt="" loading="lazy">
+        {%- endif -%}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MT – Specifications",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small text", "default": "Tech specs" },
+    { "type": "text", "id": "titulo", "label": "Heading", "default": "Materials and details, no fine print" },
+    { "type": "image_picker", "id": "imagen", "label": "Image" },
+    { "type": "color", "id": "fondo", "label": "Background color", "default": "#EFE3D0" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top spacing (px)", "min": 0, "max": 160, "step": 8, "default": 96 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom spacing (px)", "min": 0, "max": 160, "step": 8, "default": 96 }
+  ],
+  "blocks": [
+    {
+      "type": "spec",
+      "name": "Spec",
+      "settings": [
+        { "type": "text", "id": "etiqueta", "label": "Label", "default": "Material" },
+        { "type": "text", "id": "valor", "label": "Value", "default": "Solid wood" }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MT – Specifications",
+      "blocks": [
+        { "type": "spec", "settings": { "etiqueta": "Material", "valor": "Wood + ABS" } },
+        { "type": "spec", "settings": { "etiqueta": "Sensor", "valor": "Passive infrared" } },
+        { "type": "spec", "settings": { "etiqueta": "Charging", "valor": "USB-C" } },
+        { "type": "spec", "settings": { "etiqueta": "Light tones", "valor": "Cool / neutral / warm" } },
+        { "type": "spec", "settings": { "etiqueta": "Mounting", "valor": "Magnet + 3M adhesive" } },
+        { "type": "spec", "settings": { "etiqueta": "Ideal for", "valor": "Hallway, bedroom, closet" } }
+      ]
+    }
+  ]
+}
+{% endschema %}

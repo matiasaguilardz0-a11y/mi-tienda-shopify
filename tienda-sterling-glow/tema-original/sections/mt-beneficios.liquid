@@ -1,0 +1,65 @@
+{{ 'mt-styles.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.fondo }};
+  }
+  #shopify-section-{{ section.id }} .mt-beneficios-cabecera .mt-h2 { font-size: {{ section.settings.titulo_size }}px; }
+{% endstyle %}
+
+<section class="mt-beneficios mt-section">
+  <div class="mt-container">
+    <div class="mt-beneficios-cabecera mt-reveal">
+      {%- if section.settings.eyebrow != blank -%}<p class="mt-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 class="mt-h2">{{ section.settings.titulo }}</h2>
+    </div>
+    <div class="mt-grid-3">
+      {%- for block in section.blocks -%}
+        <div class="mt-beneficio-tarjeta mt-reveal" {{ block.shopify_attributes }}>
+          <div class="mt-beneficio-icono">{{ block.settings.icono }}</div>
+          <h3 class="mt-h3 mt-beneficio-titulo">{{ block.settings.titulo }}</h3>
+          <p class="mt-body">{{ block.settings.texto }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MT – Benefits",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small text", "default": "Why Casa Lumen" },
+    { "type": "text", "id": "titulo", "label": "Heading", "default": "Designed for the exact moment you need it" },
+    { "type": "range", "id": "titulo_size", "label": "Heading size (px)", "min": 22, "max": 56, "step": 2, "default": 38 },
+    { "type": "color", "id": "fondo", "label": "Background color", "default": "#F8F2E7" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top spacing (px)", "min": 0, "max": 160, "step": 8, "default": 96 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom spacing (px)", "min": 0, "max": 160, "step": 8, "default": 96 }
+  ],
+  "blocks": [
+    {
+      "type": "beneficio",
+      "name": "Benefit",
+      "settings": [
+        { "type": "html", "id": "icono", "label": "Icon (SVG)", "default": "<svg viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.6\"><circle cx=\"12\" cy=\"8\" r=\"3\"/><path d=\"M4 20c1.5-4 4.5-6 8-6s6.5 2 8 6\"/></svg>" },
+        { "type": "text", "id": "titulo", "label": "Heading", "default": "Turns on by itself" },
+        { "type": "textarea", "id": "texto", "label": "Text", "default": "The motion sensor detects when you approach and turns on the light before you need it." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MT – Benefits",
+      "blocks": [
+        { "type": "beneficio", "settings": { "titulo": "Turns on by itself", "texto": "The sensor detects your movement and turns on a warm light before you need it." } },
+        { "type": "beneficio", "settings": { "titulo": "Zero installation", "texto": "Magnet + 3M adhesive. Installs in 10 seconds, no wires or electrician needed." } },
+        { "type": "beneficio", "settings": { "titulo": "Charges like your phone", "texto": "Rechargeable USB-C battery. Take it off the wall and use it as a flashlight." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

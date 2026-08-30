@@ -1,0 +1,172 @@
+{{ 'mt-styles.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.fondo }};
+  }
+{% endstyle %}
+
+{%- assign variantes_json = product.variants | json -%}
+
+<section class="mt-producto mt-section">
+  <div class="mt-container">
+    <div class="mt-producto-layout">
+
+      <div data-mt-producto-galeria>
+        <div class="mt-producto-galeria-principal">
+          {%- if product.featured_media -%}
+            <img src="{{ product.featured_media | image_url: width: 1200 }}" alt="{{ product.featured_media.alt | escape }}" loading="eager" fetchpriority="high">
+          {%- else -%}
+            <img src="{{ 'mt-hero-banner.jpg' | asset_url }}" alt="" loading="eager">
+          {%- endif -%}
+        </div>
+        {%- if product.media.size > 1 -%}
+          <div class="mt-producto-miniaturas">
+            {%- for media in product.media -%}
+              <div class="mt-producto-miniatura{% if forloop.first %} mt-activa{% endif %}" data-full="{{ media | image_url: width: 1200 }}">
+                <img src="{{ media | image_url: width: 200 }}" alt="{{ media.alt | escape }}" loading="lazy">
+              </div>
+            {%- endfor -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div class="mt-producto-columna" data-mt-producto-form>
+        <h1 class="mt-h1 mt-producto-titulo">{{ product.title }}</h1>
+        <div class="mt-producto-precio">
+          <span class="mt-producto-precio-actual" data-mt-precio-actual>{{ product.selected_or_first_available_variant.price | money }}</span>
+          <span class="mt-producto-precio-tachado" data-mt-precio-tachado {% unless product.selected_or_first_available_variant.compare_at_price > product.selected_or_first_available_variant.price %}style="display:none;"{% endunless %}>{{ product.selected_or_first_available_variant.compare_at_price | money }}</span>
+        </div>
+
+        {%- if section.settings.intro != blank -%}
+          <div class="mt-body mt-producto-intro">{{ section.settings.intro }}</div>
+        {%- endif -%}
+
+        {% form 'product', product %}
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+
+          {%- unless product.has_only_default_variant -%}
+            {%- for option in product.options_with_values -%}
+              <div class="mt-opcion" data-indice="{{ forloop.index0 }}">
+                <span class="mt-opcion-etiqueta">{{ option.name }}</span>
+                <div class="mt-opcion-valores">
+                  {%- for value in option.values -%}
+                    <button type="button" class="mt-opcion-valor{% if value == option.selected_value %} mt-activo{% endif %}" data-valor="{{ value | escape }}">{{ value }}</button>
+                  {%- endfor -%}
+                </div>
+              </div>
+            {%- endfor -%}
+          {%- endunless -%}
+
+          <div class="mt-producto-stock" data-mt-stock {% if product.selected_or_first_available_variant.available %}style="display:none;"{% endif %}>
+            {{ section.settings.texto_agotado }}
+          </div>
+
+          <div class="mt-producto-cta">
+            <button type="submit" name="add" class="mt-btn mt-btn-primario" data-mt-comprar
+              data-texto-disponible="{{ section.settings.texto_boton }}"
+              data-texto-agotado="{{ section.settings.texto_agotado_boton }}"
+              {% unless product.selected_or_first_available_variant.available %}disabled{% endunless %}>
+              {%- if product.selected_or_first_available_variant.available -%}{{ section.settings.texto_boton }}{%- else -%}{{ section.settings.texto_agotado_boton }}{%- endif -%}
+            </button>
+          </div>
+
+          <script type="application/json" data-mt-variantes-json>
+            {{ variantes_json }}
+          </script>
+        {% endform %}
+
+        <div class="mt-confianza">
+          <div class="mt-confianza-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2" y="7" width="14" height="11" rx="2"/><path d="M16 10h3l3 3v5h-6"/><circle cx="7" cy="19" r="1.6"/><circle cx="18" cy="19" r="1.6"/></svg>
+            <span>{{ section.settings.confianza_1 }}</span>
+          </div>
+          <div class="mt-confianza-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M4 12a8 8 0 1 0 3-6.2"/><path d="M4 4v5h5"/></svg>
+            <span>{{ section.settings.confianza_2 }}</span>
+          </div>
+          <div class="mt-confianza-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 3l7 3v6c0 4.5-3 7.5-7 9-4-1.5-7-4.5-7-9V6l7-3z"/></svg>
+            <span>{{ section.settings.confianza_3 }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="mt-producto-descripcion">
+      {%- if section.settings.caracteristicas_titulo != blank -%}
+        <h2 class="mt-h2 mt-reveal">{{ section.settings.caracteristicas_titulo }}</h2>
+      {%- endif -%}
+      <div class="mt-producto-caracteristicas">
+        {%- for block in section.blocks -%}
+          {%- if block.type == 'caracteristica' -%}
+            <div class="mt-reveal" {{ block.shopify_attributes }}>
+              <h3 class="mt-h3" style="font-size:20px; margin-bottom:8px;">{{ block.settings.titulo }}</h3>
+              <p class="mt-body">{{ block.settings.texto }}</p>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+
+      {%- if section.settings.incluye_titulo != blank -%}
+        <h3 class="mt-h3 mt-reveal" style="margin-top:64px; font-size:24px;">{{ section.settings.incluye_titulo }}</h3>
+        <ul class="mt-producto-incluye mt-reveal">
+          {%- assign items = section.settings.incluye_lista | newline_to_br | split: '<br />' -%}
+          {%- for item in items -%}
+            {%- if item != blank -%}
+              <li>
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 13l4 4L19 7"/></svg>
+                <span>{{ item }}</span>
+              </li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MT – Product",
+  "tag": "section",
+  "settings": [
+    { "type": "richtext", "id": "intro", "label": "Short introduction", "default": "<p>Turns on before you arrive. No wires, no installation, no hassle.</p>" },
+    { "type": "text", "id": "texto_boton", "label": "Buy button text", "default": "Add to cart" },
+    { "type": "text", "id": "texto_agotado_boton", "label": "Sold-out button text", "default": "Sold out" },
+    { "type": "text", "id": "texto_agotado", "label": "Sold-out notice", "default": "This option is currently sold out." },
+    { "type": "text", "id": "confianza_1", "label": "Trust badge 1", "default": "24-48h shipping" },
+    { "type": "text", "id": "confianza_2", "label": "Trust badge 2", "default": "30-day returns" },
+    { "type": "text", "id": "confianza_3", "label": "Trust badge 3", "default": "100% secure payment" },
+    { "type": "text", "id": "caracteristicas_titulo", "label": "Features heading", "default": "Thoughtfully designed" },
+    { "type": "text", "id": "incluye_titulo", "label": "\"What's included\" heading", "default": "What's in the box" },
+    { "type": "textarea", "id": "incluye_lista", "label": "What's included (one item per line)", "default": "1 NOOK Motion Light wall lamp\nMagnetic base + 3M adhesive\nUSB-C charging cable\nQuick install guide" },
+    { "type": "color", "id": "fondo", "label": "Background color", "default": "#F8F2E7" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top spacing (px)", "min": 0, "max": 160, "step": 8, "default": 56 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom spacing (px)", "min": 0, "max": 160, "step": 8, "default": 96 }
+  ],
+  "blocks": [
+    {
+      "type": "caracteristica",
+      "name": "Feature",
+      "settings": [
+        { "type": "text", "id": "titulo", "label": "Heading", "default": "Real wood finish" },
+        { "type": "textarea", "id": "texto", "label": "Text", "default": "Solid wood body, not wood-look plastic." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MT – Product",
+      "blocks": [
+        { "type": "caracteristica", "settings": { "titulo": "Real wood", "texto": "Solid wood body (ash or walnut), not wood-look plastic." } },
+        { "type": "caracteristica", "settings": { "titulo": "3 sensor modes", "texto": "Night-only, all-day, or fixed light — choose with the same button." } },
+        { "type": "caracteristica", "settings": { "titulo": "Doubles as a flashlight", "texto": "Pops off the magnetic base to carry in your hand." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

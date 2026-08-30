@@ -1,0 +1,57 @@
+/*
+ * ------------------------------------------------------------
+ * IMPORTANT: The contents of this file are auto-generated.
+ *
+ * This file may be updated by the Shopify admin theme editor
+ * or related systems. Please exercise caution as any changes
+ * made to this file may be overwritten.
+ * ------------------------------------------------------------
+ */
+{
+  "sections": {
+    "principal": {
+      "type": "mt-producto",
+      "settings": {}
+    },
+    "ambientes": {
+      "type": "mt-ambientes",
+      "settings": {
+        "eyebrow": "In every corner",
+        "titulo": "A light for every corner of the house"
+      },
+      "blocks": {
+        "a1": { "type": "ambiente", "settings": { "eyebrow": "Hallway", "titulo": "The 3 AM problem", "texto": "Flipping on the main light wakes you up completely. NOOK turns on before you arrive, with a soft light that won't disturb anyone." } },
+        "a2": { "type": "ambiente", "settings": { "eyebrow": "Closet", "titulo": "Find what you're looking for", "texto": "In the closet or the basement hallway — anywhere there's no light switch within reach." } }
+      },
+      "block_order": ["a1", "a2"]
+    },
+    "resenas": {
+      "type": "mt-resenas",
+      "settings": {
+        "eyebrow": "Reviews",
+        "titulo": "Homes that sleep more peacefully now"
+      },
+      "blocks": {
+        "r1": { "type": "resena", "settings": { "estrellas": 5, "texto": "I don't turn on the main light at night anymore. It switches on by itself with just the right brightness.", "autor": "Marta G." } },
+        "r2": { "type": "resena", "settings": { "estrellas": 5, "texto": "It installed in literally one minute. And the walnut finish looks beautiful in the hallway.", "autor": "Diego R." } },
+        "r3": { "type": "resena", "settings": { "estrellas": 4, "texto": "I bought it for my daughter's room and now she's not afraid to get up at night anymore.", "autor": "Laura P." } }
+      },
+      "block_order": ["r1", "r2", "r3"]
+    },
+    "faq": {
+      "type": "mt-faq",
+      "settings": {
+        "eyebrow": "Frequently asked questions",
+        "titulo": "Everything you want to know",
+        "fondo": "#EFE3D0"
+      },
+      "blocks": {
+        "f1": { "type": "pregunta", "settings": { "pregunta": "How long does the battery last?", "respuesta": "It depends on the mode. In night-sensor mode, which only activates when you walk by in the dark, the battery lasts weeks." } },
+        "f2": { "type": "pregunta", "settings": { "pregunta": "Do I need an electrician?", "respuesta": "No. It has no wires. It sticks to the wall with the included adhesive and magnetic base." } },
+        "f3": { "type": "pregunta", "settings": { "pregunta": "Can I return it if I'm not happy with it?", "respuesta": "Yes, you have 30 days from delivery to return it at no cost." } }
+      },
+      "block_order": ["f1", "f2", "f3"]
+    }
+  },
+  "order": ["principal", "ambientes", "resenas", "faq"]
+}

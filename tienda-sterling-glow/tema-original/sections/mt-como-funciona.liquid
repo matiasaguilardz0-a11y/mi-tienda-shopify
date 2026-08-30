@@ -1,0 +1,74 @@
+{{ 'mt-styles.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.fondo }};
+  }
+{% endstyle %}
+
+<section class="mt-como-funciona mt-section" id="mt-como-funciona">
+  <div class="mt-container">
+    <div class="mt-pasos-cabecera mt-reveal">
+      {%- if section.settings.eyebrow != blank -%}<p class="mt-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 class="mt-h2">{{ section.settings.titulo }}</h2>
+    </div>
+    <div class="mt-grid-3 mt-pasos-grid">
+      {%- for block in section.blocks -%}
+        <div class="mt-paso mt-reveal" {{ block.shopify_attributes }}>
+          <div class="mt-paso-media">
+            {%- if block.settings.imagen != blank -%}
+              <img src="{{ block.settings.imagen | image_url: width: 900 }}" alt="{{ block.settings.imagen.alt | escape }}" loading="lazy">
+            {%- elsif forloop.index == 1 -%}
+              <img src="{{ 'mt-paso-1.jpg' | asset_url }}" alt="" loading="lazy">
+            {%- elsif forloop.index == 2 -%}
+              <img src="{{ 'mt-paso-2.jpg' | asset_url }}" alt="" loading="lazy">
+            {%- else -%}
+              <img src="{{ 'mt-paso-3.jpg' | asset_url }}" alt="" loading="lazy">
+            {%- endif -%}
+            <span class="mt-paso-numero">{{ forloop.index }}</span>
+          </div>
+          <h3 class="mt-h3 mt-paso-titulo">{{ block.settings.titulo }}</h3>
+          <p class="mt-body">{{ block.settings.texto }}</p>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MT – How it works",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small text", "default": "How it works" },
+    { "type": "text", "id": "titulo", "label": "Heading", "default": "From the box to the wall in under a minute" },
+    { "type": "color", "id": "fondo", "label": "Background color", "default": "#EFE3D0" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top spacing (px)", "min": 0, "max": 160, "step": 8, "default": 96 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom spacing (px)", "min": 0, "max": 160, "step": 8, "default": 96 }
+  ],
+  "blocks": [
+    {
+      "type": "paso",
+      "name": "Step",
+      "settings": [
+        { "type": "image_picker", "id": "imagen", "label": "Step photo" },
+        { "type": "text", "id": "titulo", "label": "Heading", "default": "Detects your movement" },
+        { "type": "textarea", "id": "texto", "label": "Text", "default": "The infrared sensor notices you approaching and turns on the warm light." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MT – How it works",
+      "blocks": [
+        { "type": "paso", "settings": { "titulo": "Detects your movement", "texto": "The infrared sensor notices you approaching and turns on the light — no touching required." } },
+        { "type": "paso", "settings": { "titulo": "Choose your light", "texto": "Press and hold the button to switch between cool white, neutral and warm light." } },
+        { "type": "paso", "settings": { "titulo": "Installs in 10 seconds", "texto": "Stick the magnetic base on with the included adhesive and snap the light into place. No tools needed." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

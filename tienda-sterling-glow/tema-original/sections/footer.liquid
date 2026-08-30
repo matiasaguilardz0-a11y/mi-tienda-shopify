@@ -1,0 +1,101 @@
+{{ 'mt-styles.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  #shopify-section-{{ section.id }} { background: var(--mt-color-nogal); }
+{% endstyle %}
+
+<footer class="mt-footer">
+  <div class="mt-container">
+    <div class="mt-footer-grid">
+      <div>
+        <p class="mt-footer-marca-nombre">{{ section.settings.marca_nombre | default: shop.name }}</p>
+        <p class="mt-footer-tagline">{{ section.settings.tagline }}</p>
+        {%- if settings.social_instagram_link != blank or settings.social_facebook_link != blank or settings.social_tiktok_link != blank or settings.social_pinterest_link != blank -%}
+          <div class="mt-footer-social">
+            {%- if settings.social_instagram_link != blank -%}
+              <a href="{{ settings.social_instagram_link }}" aria-label="Instagram">{{ 'icon-instagram.svg' | inline_asset_content }}</a>
+            {%- endif -%}
+            {%- if settings.social_facebook_link != blank -%}
+              <a href="{{ settings.social_facebook_link }}" aria-label="Facebook">{{ 'icon-facebook.svg' | inline_asset_content }}</a>
+            {%- endif -%}
+            {%- if settings.social_tiktok_link != blank -%}
+              <a href="{{ settings.social_tiktok_link }}" aria-label="TikTok">{{ 'icon-tiktok.svg' | inline_asset_content }}</a>
+            {%- endif -%}
+            {%- if settings.social_pinterest_link != blank -%}
+              <a href="{{ settings.social_pinterest_link }}" aria-label="Pinterest">{{ 'icon-pinterest.svg' | inline_asset_content }}</a>
+            {%- endif -%}
+          </div>
+        {%- endif -%}
+      </div>
+
+      <div>
+        <p class="mt-footer-col-titulo">{{ section.settings.nav_titulo }}</p>
+        <ul class="mt-footer-links">
+          {%- for i in (1..5) -%}
+            {%- assign label = 'nav_link_' | append: i | append: '_label' -%}
+            {%- assign url = 'nav_link_' | append: i | append: '_url' -%}
+            {%- if section.settings[label] != blank -%}
+              <li><a href="{{ section.settings[url] | default: '#' }}">{{ section.settings[label] }}</a></li>
+            {%- endif -%}
+          {%- endfor -%}
+        </ul>
+      </div>
+
+      <div>
+        <p class="mt-footer-col-titulo">{{ section.settings.legal_titulo }}</p>
+        <ul class="mt-footer-links">
+          <li><a href="{{ pages.privacidad.url | default: '/policies/privacy-policy' }}">{{ section.settings.legal_privacidad }}</a></li>
+          <li><a href="{{ pages.terminos.url | default: '/policies/terms-of-service' }}">{{ section.settings.legal_terminos }}</a></li>
+          <li><a href="/policies/refund-policy">{{ section.settings.legal_devoluciones }}</a></li>
+          <li><a href="/policies/shipping-policy">{{ section.settings.legal_envios }}</a></li>
+          {%- if section.settings.legal_cookies_url != blank -%}
+            <li><a href="{{ section.settings.legal_cookies_url }}">{{ section.settings.legal_cookies }}</a></li>
+          {%- endif -%}
+        </ul>
+      </div>
+    </div>
+
+    <div class="mt-footer-inferior">
+      <span>© {{ 'now' | date: '%Y' }} {{ section.settings.marca_nombre | default: shop.name }}. {{ section.settings.copyright_extra }}</span>
+      {%- if shop.enabled_payment_types.size > 0 -%}
+        <div class="mt-footer-pagos">
+          {%- for type in shop.enabled_payment_types -%}
+            {{ type | payment_type_svg_tag }}
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "MT – Footer",
+  "settings": [
+    { "type": "text", "id": "marca_nombre", "label": "Brand name", "default": "Casa Lumen" },
+    { "type": "textarea", "id": "tagline", "label": "Short description", "default": "Warm motion-sensor lighting for the home. Minimalist design, zero installation." },
+    { "type": "header", "content": "Navigation column" },
+    { "type": "text", "id": "nav_titulo", "label": "Column title", "default": "Shop" },
+    { "type": "text", "id": "nav_link_1_label", "label": "Link 1 — text", "default": "All products" },
+    { "type": "url", "id": "nav_link_1_url", "label": "Link 1 — URL" },
+    { "type": "text", "id": "nav_link_2_label", "label": "Link 2 — text", "default": "How it works" },
+    { "type": "url", "id": "nav_link_2_url", "label": "Link 2 — URL" },
+    { "type": "text", "id": "nav_link_3_label", "label": "Link 3 — text", "default": "FAQ" },
+    { "type": "url", "id": "nav_link_3_url", "label": "Link 3 — URL" },
+    { "type": "text", "id": "nav_link_4_label", "label": "Link 4 — text", "default": "Contact" },
+    { "type": "url", "id": "nav_link_4_url", "label": "Link 4 — URL" },
+    { "type": "text", "id": "nav_link_5_label", "label": "Link 5 — text" },
+    { "type": "url", "id": "nav_link_5_url", "label": "Link 5 — URL" },
+    { "type": "header", "content": "Legal column" },
+    { "type": "text", "id": "legal_titulo", "label": "Column title", "default": "Legal" },
+    { "type": "text", "id": "legal_privacidad", "label": "Privacy text", "default": "Privacy Policy" },
+    { "type": "text", "id": "legal_terminos", "label": "Terms text", "default": "Terms of Service" },
+    { "type": "text", "id": "legal_devoluciones", "label": "Returns text", "default": "Returns" },
+    { "type": "text", "id": "legal_envios", "label": "Shipping text", "default": "Shipping" },
+    { "type": "text", "id": "legal_cookies", "label": "Cookies text", "default": "Cookies" },
+    { "type": "url", "id": "legal_cookies_url", "label": "Link to cookies page" },
+    { "type": "header", "content": "Bottom bar" },
+    { "type": "text", "id": "copyright_extra", "label": "Extra text next to copyright", "default": "All rights reserved." }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,59 @@
+{{ 'mt-styles.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+  }
+  #shopify-section-{{ section.id }} .mt-cta-final { min-height: {{ section.settings.altura }}px; display: flex; align-items: center; }
+{% endstyle %}
+
+{%- assign p = section.settings.producto -%}
+
+<section class="mt-cta-final">
+  <div class="mt-cta-final-media">
+    {%- if section.settings.imagen != blank -%}
+      <img src="{{ section.settings.imagen | image_url: width: 2400 }}" alt="" loading="lazy">
+    {%- else -%}
+      <img src="{{ 'mt-cta-banner.jpg' | asset_url }}" alt="" loading="lazy">
+    {%- endif -%}
+  </div>
+  <div class="mt-cta-final-overlay"></div>
+  <div class="mt-container">
+    <div class="mt-cta-final-contenido mt-reveal">
+      {%- if section.settings.eyebrow != blank -%}<p class="mt-eyebrow" style="color: var(--mt-color-acento);">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 class="mt-h2">{{ section.settings.titulo }}</h2>
+      <p class="mt-body">{{ section.settings.texto }}</p>
+      {%- if p != blank -%}
+        <div class="mt-cta-final-precio">
+          <span class="mt-cta-final-precio-actual">{{ p.selected_or_first_available_variant.price | money }}</span>
+          {%- if p.selected_or_first_available_variant.compare_at_price > p.selected_or_first_available_variant.price -%}
+            <span class="mt-cta-final-precio-tachado">{{ p.selected_or_first_available_variant.compare_at_price | money }}</span>
+          {%- endif -%}
+        </div>
+      {%- endif -%}
+      <a href="{{ p.url | default: section.settings.boton_enlace | default: '#' }}" class="mt-btn mt-btn-claro">{{ section.settings.boton_texto }}</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MT – Final CTA",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small text", "default": "Casa Lumen" },
+    { "type": "text", "id": "titulo", "label": "Heading", "default": "Give your home the light it needs at 3 AM" },
+    { "type": "textarea", "id": "texto", "label": "Text", "default": "Shipped in 24-48h with free returns for the first 30 days." },
+    { "type": "text", "id": "boton_texto", "label": "Button text", "default": "Shop NOOK Motion Light" },
+    { "type": "url", "id": "boton_enlace", "label": "Button link (if no product selected)" },
+    { "type": "product", "id": "producto", "label": "Product to link to" },
+    { "type": "image_picker", "id": "imagen", "label": "Background image" },
+    { "type": "range", "id": "altura", "label": "Height (px)", "min": 380, "max": 720, "step": 20, "default": 520 },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top spacing (px)", "min": 0, "max": 120, "step": 8, "default": 0 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom spacing (px)", "min": 0, "max": 120, "step": 8, "default": 0 }
+  ],
+  "presets": [ { "name": "MT – Final CTA" } ]
+}
+{% endschema %}

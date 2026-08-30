@@ -1,0 +1,67 @@
+{{ 'mt-styles.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: {{ section.settings.fondo }};
+  }
+{% endstyle %}
+
+<section class="mt-faq mt-section">
+  <div class="mt-container" style="max-width: 820px;">
+    <div class="mt-beneficios-cabecera mt-reveal">
+      {%- if section.settings.eyebrow != blank -%}<p class="mt-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h2 class="mt-h2">{{ section.settings.titulo }}</h2>
+    </div>
+    <div class="mt-reveal">
+      {%- for block in section.blocks -%}
+        <details class="mt-faq-item" {{ block.shopify_attributes }}>
+          <summary>
+            <span>{{ block.settings.pregunta }}</span>
+            <span class="mt-faq-icono" aria-hidden="true"></span>
+          </summary>
+          <div class="mt-faq-respuesta">
+            <p class="mt-body">{{ block.settings.respuesta }}</p>
+          </div>
+        </details>
+      {%- endfor -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MT – FAQ",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Small text", "default": "Frequently asked questions" },
+    { "type": "text", "id": "titulo", "label": "Heading", "default": "Everything you want to know" },
+    { "type": "color", "id": "fondo", "label": "Background color", "default": "#F8F2E7" },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top spacing (px)", "min": 0, "max": 160, "step": 8, "default": 96 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom spacing (px)", "min": 0, "max": 160, "step": 8, "default": 96 }
+  ],
+  "blocks": [
+    {
+      "type": "pregunta",
+      "name": "Question",
+      "settings": [
+        { "type": "text", "id": "pregunta", "label": "Question", "default": "How long does the battery last?" },
+        { "type": "textarea", "id": "respuesta", "label": "Answer", "default": "It depends on the mode. In night-sensor mode, which only activates in the dark, one charge lasts weeks." }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "MT – FAQ",
+      "blocks": [
+        { "type": "pregunta", "settings": { "pregunta": "How long does the battery last?", "respuesta": "It depends on the mode. In night-sensor mode, which only activates when you walk by in the dark, the battery lasts weeks. In fixed mode it drains faster." } },
+        { "type": "pregunta", "settings": { "pregunta": "Does it turn on during the day?", "respuesta": "Not in night mode — it has a light sensor that keeps it off when the room is already bright. If you want it active all day, switch to that mode with the button." } },
+        { "type": "pregunta", "settings": { "pregunta": "Do I need an electrician?", "respuesta": "No. It has no wires. It sticks to the wall with the included adhesive and magnetic base, and charges just like your phone." } },
+        { "type": "pregunta", "settings": { "pregunta": "Can it be used outdoors?", "respuesta": "It's designed for indoor use. A covered porch is fine, but avoid direct rain." } }
+      ]
+    }
+  ]
+}
+{% endschema %}

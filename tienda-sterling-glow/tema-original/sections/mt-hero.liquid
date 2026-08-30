@@ -1,0 +1,78 @@
+{{ 'mt-styles.css' | asset_url | stylesheet_tag }}
+
+{% style %}
+  #shopify-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top }}px;
+    padding-bottom: {{ section.settings.padding_bottom }}px;
+    background: var(--mt-color-fondo);
+  }
+  #shopify-section-{{ section.id }} .mt-hero { min-height: {{ section.settings.altura }}px; display: flex; align-items: center; }
+  #shopify-section-{{ section.id }} .mt-hero-overlay {
+    position: absolute; inset: 0; z-index: 0;
+    background: linear-gradient(100deg, rgba(248,242,231,{{ section.settings.overlay_opacidad | times: 0.01 }}) 0%, rgba(248,242,231,{{ section.settings.overlay_opacidad | times: 0.006 }}) 42%, rgba(248,242,231,0) 68%);
+  }
+  @media (max-width: 540px) {
+    #shopify-section-{{ section.id }} .mt-hero { min-height: {{ section.settings.altura_movil }}px; }
+  }
+{% endstyle %}
+
+<section class="mt-hero">
+  <div class="mt-hero-media" data-mt-hero-media>
+    {%- if section.settings.imagen != blank -%}
+      <img src="{{ section.settings.imagen | image_url: width: 2400 }}" alt="{{ section.settings.imagen.alt | escape }}" loading="eager" fetchpriority="high">
+    {%- else -%}
+      <img src="{{ 'mt-hero-banner.jpg' | asset_url }}" alt="" loading="eager" fetchpriority="high">
+    {%- endif -%}
+  </div>
+  <div class="mt-hero-overlay"></div>
+  <div class="mt-container">
+    <div class="mt-hero-contenido mt-reveal">
+      {%- if section.settings.eyebrow != blank -%}<p class="mt-eyebrow">{{ section.settings.eyebrow }}</p>{%- endif -%}
+      <h1 class="mt-h1 mt-hero-titulo">{{ section.settings.titulo }}</h1>
+      <p class="mt-body mt-hero-subtitulo">{{ section.settings.subtitulo | newline_to_br }}</p>
+      <div class="mt-hero-acciones">
+        {%- if section.settings.boton_texto != blank -%}
+          {%- assign enlace_principal = section.settings.boton_enlace -%}
+          {%- if section.settings.producto != blank -%}{%- assign enlace_principal = section.settings.producto.url -%}{%- endif -%}
+          <a href="{{ enlace_principal | default: '#' }}" class="mt-btn mt-btn-primario">{{ section.settings.boton_texto }}</a>
+        {%- endif -%}
+        {%- if section.settings.boton2_texto != blank -%}
+          <a href="{{ section.settings.boton2_enlace | default: '#mt-como-funciona' }}" class="mt-btn mt-btn-secundario">{{ section.settings.boton2_texto }}</a>
+        {%- endif -%}
+      </div>
+      {%- if section.settings.prueba_texto != blank -%}
+        <div class="mt-hero-prueba">
+          <span class="mt-estrellas">★★★★★</span>
+          <span>{{ section.settings.prueba_texto }}</span>
+        </div>
+      {%- endif -%}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "MT – Hero",
+  "tag": "section",
+  "settings": [
+    { "type": "text", "id": "eyebrow", "label": "Top small text", "default": "Casa Lumen" },
+    { "type": "text", "id": "titulo", "label": "Heading", "default": "The light that turns on before you trip" },
+    { "type": "textarea", "id": "subtitulo", "label": "Subheading", "default": "A motion-sensor wall light with no cables or installation. Stick it on, charge it, forget it — until you need it." },
+    { "type": "text", "id": "boton_texto", "label": "Primary button text", "default": "Shop now" },
+    { "type": "url", "id": "boton_enlace", "label": "Primary button link (if no product selected)" },
+    { "type": "product", "id": "producto", "label": "Product the primary button links to" },
+    { "type": "text", "id": "boton2_texto", "label": "Secondary button text", "default": "How it works" },
+    { "type": "url", "id": "boton2_enlace", "label": "Secondary button link" },
+    { "type": "text", "id": "prueba_texto", "label": "Trust text", "default": "Trusted by 500+ homes" },
+    { "type": "image_picker", "id": "imagen", "label": "Image" },
+    { "type": "header", "content": "Size" },
+    { "type": "range", "id": "altura", "label": "Desktop height (px)", "min": 420, "max": 800, "step": 20, "default": 620 },
+    { "type": "range", "id": "altura_movil", "label": "Mobile height (px)", "min": 380, "max": 700, "step": 20, "default": 520 },
+    { "type": "range", "id": "overlay_opacidad", "label": "Overlay intensity", "min": 0, "max": 100, "step": 5, "default": 55 },
+    { "type": "header", "content": "Spacing" },
+    { "type": "range", "id": "padding_top", "label": "Top spacing (px)", "min": 0, "max": 120, "step": 8, "default": 0 },
+    { "type": "range", "id": "padding_bottom", "label": "Bottom spacing (px)", "min": 0, "max": 120, "step": 8, "default": 0 }
+  ],
+  "presets": [ { "name": "MT – Hero" } ]
+}
+{% endschema %}
