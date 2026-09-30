@@ -192,12 +192,14 @@
     .equip-body h3 { font-size: 1.45rem; }
     .equip-body p { color: var(--muted); flex: 1; }
     .equip-body .btn { align-self: flex-start; padding: 10px 18px; font-size: .92rem; }
-    .video-block { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 340px); gap: clamp(24px, 5vw, 64px); align-items: center; }
+    .video-block { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 580px); gap: clamp(24px, 5vw, 64px); align-items: center; }
     .video-block h2 { font-size: clamp(2rem, 4vw, 2.8rem); margin-bottom: 12px; }
     .video-block p { color: var(--muted); max-width: 46ch; margin-bottom: 24px; }
     .video-frame { position: relative; aspect-ratio: 9 / 16; border-radius: var(--radius); overflow: hidden; background: #0f1b3d; box-shadow: 0 18px 40px rgba(15,27,61,.18); }
     .video-frame video { width: 100%; height: 100%; object-fit: cover; display: block; }
-    @media (max-width: 720px) { .video-block { grid-template-columns: 1fr; } .video-frame { max-width: 340px; width: 100%; margin-inline: auto; } }
+    .cs-media { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .cs-media .shot { aspect-ratio: 9 / 16; }
+    @media (max-width: 720px) { .video-block { grid-template-columns: 1fr; } .cs-media { grid-template-columns: 1fr; max-width: 340px; width: 100%; margin-inline: auto; } }
     .lightbox { position: fixed; inset: 0; z-index: 100; background: rgba(6,12,32,.92); display: grid; place-items: center; padding: 56px 16px; }
     .lightbox[hidden] { display: none; }
     .lightbox figure { margin: 0; display: grid; justify-items: center; gap: 12px; max-width: 100%; }
@@ -253,15 +255,19 @@
     <div class="wrap video-block">
       <div>
         <h2>Cajas secas</h2>
-        <p>Así trabajamos en una caja seca. Si tu caja necesita soldadura o reparación, mándanos fotos por WhatsApp y te cotizamos.</p>
+        <p>Así trabajamos en las cajas secas. Si tu caja necesita soldadura o reparación, mándanos fotos por WhatsApp y te cotizamos.</p>
         <a class="btn btn-wa" href="https://wa.me/528714509356?text=Hola%2C%20me%20interesa%3A%20Soldadura%20de%20caja%20seca" target="_blank" rel="noopener"><svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M20.5 3.5A11.8 11.8 0 0 0 1.9 17.7L.5 23.5l6-1.6A11.8 11.8 0 0 0 20.5 3.5zM12 21.4c-1.8 0-3.5-.5-5-1.4l-.4-.2-3.6.9.9-3.5-.2-.4A9.8 9.8 0 1 1 12 21.4zm5.4-7.3c-.3-.1-1.8-.9-2-1-.3-.1-.5-.1-.7.1l-.9 1.2c-.2.2-.3.2-.6.1a8 8 0 0 1-4-3.5c-.3-.5.3-.5.9-1.6.1-.2 0-.4 0-.5l-.9-2.2c-.2-.6-.5-.5-.7-.5h-.6c-.2 0-.5.1-.8.4-.3.3-1 1-1 2.5s1.1 2.9 1.2 3.1c.1.2 2.1 3.2 5.1 4.5 1.9.8 2.6.9 3.6.7.6-.1 1.8-.7 2-1.4.3-.7.3-1.3.2-1.4l-.8-.5z"/></svg> Cotizar caja seca</a>
       </div>
       <!-- Video: video/cajas-secas-1.mp4 (portada: video/cajas-secas-1.jpg) -->
-      <div class="video-frame">
-        <video controls playsinline preload="metadata" poster="video/cajas-secas-1.jpg" aria-label="Video: trabajo en una caja seca">
-          <source src="video/cajas-secas-1.mp4" type="video/mp4">
-          Tu navegador no puede reproducir este video. <a href="video/cajas-secas-1.mp4">Descárgalo aquí</a>.
-        </video>
+      <div class="cs-media">
+        <div class="video-frame">
+          <video controls playsinline preload="metadata" poster="video/cajas-secas-1.jpg" aria-label="Video: trabajo en una caja seca">
+            <source src="video/cajas-secas-1.mp4" type="video/mp4">
+            Tu navegador no puede reproducir este video. <a href="video/cajas-secas-1.mp4">Descárgalo aquí</a>.
+          </video>
+        </div>
+        <!-- Foto: img/soldadura/caja-seca-1.jpg -->
+        <div class="shot ph" data-try="img/soldadura/caja-seca-1.jpg" data-caption="Caja seca en Multiservicios MSS"><svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.8"/><path d="M21 16l-5-5-8 8"/></svg><span>Foto próximamente</span></div>
       </div>
     </div>
   </section>
