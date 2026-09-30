@@ -1,0 +1,3 @@
+Fotos de remolques fabricados.
+Nómbralas remolque-1.jpg, remolque-2.jpg ... remolque-8.jpg (tamaño recomendado: 1200 px de ancho).
+Cada foto reemplaza un recuadro "Foto próximamente" en remolques.html.
