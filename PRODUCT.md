@@ -25,7 +25,7 @@ Especialistas en mecánica diésel con servicios complementarios en el mismo lug
 ## Operating Context
 
 - El visitante suele llegar desde el celular, muchas veces con una unidad detenida; el contacto debe estar a un toque (WhatsApp, llamar, cómo llegar).
-- Contacto: teléfono/WhatsApp 871 450 9356 (`https://wa.me/528714509356`). Los botones de WhatsApp abren con un mensaje prellenado ("Hola, me interesa: …").
+- Contacto: teléfono/WhatsApp 871 462 4550 (`https://wa.me/528714624550`). Los botones de WhatsApp abren con un mensaje prellenado ("Hola, me interesa: …").
 - Dirección: C. Raúl López Sánchez 13031, C.P. 27059, Torreón, Coahuila. En Google Maps el negocio aparece como "MECANICO RESCATE MSS"; el mapa del sitio usa ese lugar.
 - Horario: lunes a viernes 9:00 a.m.–6:00 p.m.; sábado 9:00 a.m.–2:00 p.m.; domingo cerrado. Rescate: 24 horas, todos los días.
 - Idioma: español de México.
