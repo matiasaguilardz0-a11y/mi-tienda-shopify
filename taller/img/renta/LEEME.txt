@@ -1,3 +1,3 @@
-Fotos del equipo en renta.
-Nómbralas montacargas.jpg, generadores.jpg y rotomartillos.jpg (tamaño recomendado: 1200 px de ancho).
+Fotos del equipo en venta, renta y servicio.
+Nómbralas montacargas.jpg, generadores.jpg, rotomartillos.jpg, revolvedoras.jpg, remolques.jpg y compresores.jpg (tamaño recomendado: 1200 px de ancho).
 Cada foto reemplaza el recuadro "Foto próximamente" de su tarjeta en renta.html.

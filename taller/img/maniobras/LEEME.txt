@@ -1,0 +1,3 @@
+Fotos de maniobras y traslados de maquinaria ligera.
+Nómbralas maniobras-1.jpg, maniobras-2.jpg ... maniobras-8.jpg (tamaño recomendado: 1200 px de ancho).
+Cada foto reemplaza un recuadro "Foto próximamente" en maniobras.html.

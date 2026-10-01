@@ -20,7 +20,7 @@ Sitio web de una sola marca para el taller **Multiservicios MSS**. Existe para q
 
 ## Positioning
 
-Especialistas en mecánica diésel con servicios complementarios en el mismo lugar: escáner para diagnosticar y reprogramar unidades de servicio pesado (y escáner para servicio ligero), vulcanizadora, soldadura de cajas secas, refacciones para tractocamiones, servicio eléctrico, fabricación de remolques de cualquier tipo, renta de equipo industrial y rescate 24 horas.
+Especialistas en mecánica diésel con servicios complementarios en el mismo lugar: escáner para diagnosticar y reprogramar unidades de servicio pesado (y escáner para servicio ligero), frenos de aire e hidráulicos para todo tipo de unidad, vulcanizadora, soldadura y pailería (reparación de todo tipo de remolque pesado, plataformas para camionetas), refacciones nuevas y usadas y tracto fierros, venta/renta/servicio de equipo (montacargas, generadores, rotomartillos, revolvedoras, remolques y compresores), maniobras y traslados de maquinaria ligera, servicio eléctrico, fabricación de remolques de cualquier tipo y rescate 24 horas.
 
 ## Operating Context
 
@@ -32,10 +32,10 @@ Especialistas en mecánica diésel con servicios complementarios en el mismo lug
 
 ## Capabilities and Constraints
 
-- HTML/CSS/JS estático, sin framework ni build, en `taller/`: `index.html` (inicio), `remolques.html`, `soldadura.html`, `renta.html` (galerías).
+- HTML/CSS/JS estático, sin framework ni build, en `taller/`: `index.html` (inicio), `remolques.html`, `soldadura.html`, `renta.html`, `maniobras.html` (galerías). Soldadura incluye un video de cajas secas en `video/`.
 - Publicado con GitHub Pages desde la rama `sitio-taller-automotriz`: https://matiasaguilardz0-a11y.github.io/mi-tienda-shopify/taller/
 - Cada página lleva sus estilos y el logo embebidos para funcionar sola (también en la vista previa de la app, que abre un archivo a la vez).
-- Galerías: las fotos se guardan en `taller/img/<remolques|soldadura|renta>/` con nombres fijos (ver `LEEME.txt` de cada carpeta) y reemplazan solas los recuadros "Foto próximamente".
+- Galerías: las fotos se guardan en `taller/img/<remolques|soldadura|renta|maniobras>/` con nombres fijos (ver `LEEME.txt` de cada carpeta) y reemplazan solas los recuadros "Foto próximamente".
 - Datos estructurados schema.org (`AutoRepair`) con nombre, teléfono, dirección, horario y servicios.
 - Sin dominio propio todavía. Videos de remolques: recomendados vía YouTube, aún no existen.
 
@@ -51,7 +51,8 @@ Especialistas en mecánica diésel con servicios complementarios en el mismo lug
 
 - Confirmado: más de 10 años de experiencia.
 - Logo (`taller/logo.jpg`) y ubicación verificada en Google Maps.
-- **No hay aún:** fotos de trabajos, remolques, soldadura ni equipo en renta; videos; testimonios ni reseñas; precios. No inventar ninguno de estos.
+- Una foto de caja seca (`taller/img/soldadura/soldadura-1.jpg`) y un video de trabajo en caja seca (`taller/video/cajas-secas-1.mp4`).
+- **No hay aún:** el resto de fotos de trabajos, remolques, maniobras y equipo; testimonios ni reseñas; precios. No inventar ninguno de estos.
 
 ## Product Principles
 
